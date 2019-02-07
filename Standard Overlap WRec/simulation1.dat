@@ -1,0 +1,206 @@
+# set up parameters for simulation model
+#########master part###################
+#=============================================================
+# num of simulation/iterations (one value)
+1
+
+# num of years (one value)
+100
+
+# num of ages (one value)
+12
+
+# num of populations (one value)
+4
+
+# num of productivity levels (one value)
+3
+
+# num of target total mortality levels (one value)
+2
+
+# num of mixing and productivity scenarios
+6
+
+# num of recruit variation levels
+3
+
+# num of data quality levels
+3
+
+# num of mixing rate uncertainty levels
+3
+
+# assessment starting year and step.by year (vector)
+21 
+1
+
+#=============================================================
+# natural mortality for each area, #column match to num population (vector)
+0.25 0.25 0.25 0.25
+
+# target total mortality levels for each area, #column match to num population (vector)
+0.55 0.55 0.55 0.55
+0.65 0.65 0.65 0.65
+
+# LVB growth parameters,shared by all population,3 column, (vector)
+# in order of (Linf, K, to) 
+60.9 0.1686 0
+
+# weight condition factor,shared by all population,2 column, (vector)
+# in order of (alpha, beta)
+0.0000806 2.45
+
+# prop. of female, shared by all population,(one value)
+0.5 
+
+# eggs/per kg female ,shared by all population,(one value)
+19937
+
+# logistic maturity parameters, shared by all population, 3column (vector)
+#(maturity at inf length,curv param, length at inflect of logistic model)
+1.0 0.315 37.864
+
+
+# Ricker recruitment parameter for each population(matrix)
+# Note: #column is 7(fecundity alpha, density depend. beta)
+# Note: #row match to 3 different productivity levels
+# in commented out below is 3 productivity level: low, average, high (h=0.7,1.3668,1.9)
+0.0005226142	1.511359e-10	
+0.0012062571	2.318631e-10
+0.0018207515	2.716004e-10
+
+
+# recruitVar::Rec Variation
+# row: autocorrelation and innovative std
+# col: 2 levels( best estimation VS. High)
+# correspond to (Rho, Variance),  (0.45,0.8734),(0,0.8734),(0.45,1.5)
+0.45 0.78
+0    0.8734
+0.45 1.3395
+
+
+#Recruitment initial value
+#row= target mortality levels
+#col= 3 productivity levels
+992936	1848608	2082988583575	1912063	2275955
+
+# gamma parameter for selectivity at age, same for all population, (vector)
+# alpha, beta changed from 2.1 and 0.25
+13.074 1.26 
+
+
+#catchability, same for all area (one number)
+0.0000015
+
+
+# movement parameters (movement rate= 1- stay rate) for evaluated scenarios
+# row = 6 scenarios
+# column = # population (square matrix)
+0.3	0.3	0.3	0.3
+0.3	0.3	0.3	0.3
+0.09	0.09	0.48	0.48
+0.48	0.48    0.09	0.09
+0.09	0.09	0.48	0.48
+0.09	0.48	0.09	0.48
+
+
+# productivity levels (1=low; 2=average; 3=high) for evaluated scenarios
+# row = 6 scenarios
+# column = # population (square matrix)
+# three levels correspond to previous Ricker recruitment rows
+2 2 2 2
+1 1 3 3
+2 2 2 2
+1 1 3 3
+1 1 3 3
+1 1 3 3
+
+
+# implementation error for TAC, match to #area (vector)
+# only use sd here
+0.1 0.1 0.1 0.1
+
+#effective sample size
+25 50 100
+
+# std error for observed catch for each area, lognormal (vector)
+# correspond to CV 0.4, 0.15 ,0.1
+0.39  0.39  0.39  0.39
+0.15  0.15  0.15  0.15
+0.1   0.1   0.1   0.1
+
+# std for combined error (process and observation) for fishing effort for each area, log normal (vector)
+# correspond to CV 0.8, 0.3 ,0.2
+0.7  0.7  0.7  0.7
+0.29 0.29 0.29 0.29
+0.2  0.2  0.2  0.2
+
+#file name for output simulation data
+simData1.txt
+
+#file name for output performance statistics
+performindependent.txt
+
+#file name for output performance statistics
+performpooled.txt
+
+# if output all years catch@age for assessment model (number)
+# 1 is to use all, 0 is not, then you need to provide how many yr  
+0
+
+# if above is 0, then how many yrs data for output for assessment (number)
+# it should smaller than the starting assess year in above defined
+# if above is 1, then this data will be ignored
+20
+
+# output ages range for assessment (vector)
+# first age and last age(not over the number of ages in the top defined)
+3 12
+
+# how many last num of yrs total mortality used for TAC (one number)
+3
+
+# first age of last num of yrs as mean recruitment for TAC (one number)
+10
+
+#for linux (for HPC=1, for laptop=0)
+1
+
+#Stay rate varying scenario set
+##three column: 1(stay rate) 2(stay sd) 3(stay mean) 
+0.7	0.25	0.8472979		
+0.91	0.58	2.313635	
+0.52	0.21	0.08004271		
+
+
+#######varying part for different scenario################
+#**************************************************************
+# using random seed,  (one value)
+# 1 is use random seed, 0 is use fixed seed
+0
+
+# use fixed random seed (one value)
+1000
+
+
+#model num
+4
+
+#scenario num
+1
+
+#Mot level
+1
+
+#Rec Var level
+1
+
+#Data Quality level
+2
+
+#Mix varying: 1(Overlap, mix constant in ass and operating models; baseline);2(Overlap, mix varying annually in Assessment model); 3(Overlap, mix varying annual in operating model)
+1
+
+#test end of readin
+998 999 1000
